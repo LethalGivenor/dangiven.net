@@ -8,9 +8,66 @@
 body { 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
     line-height: 1.6; 
-    background: #f4f7fb url('assets/images/hexagon-pattern.svg') repeat; 
-    background-size: 120px 104px;
+    background: #f4f7fb;
     color: #333; 
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated hexagonal background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        url('assets/images/hexagon-pattern-large.svg') repeat,
+        url('assets/images/hexagon-pattern.svg') repeat;
+    background-size: 200px 173px, 120px 104px;
+    background-position: 
+        calc(0px + var(--scroll-offset-1, 0px)) calc(0px + var(--scroll-offset-1, 0px)), 
+        calc(50px + var(--scroll-offset-1, 0px)) calc(50px + var(--scroll-offset-1, 0px));
+    opacity: 0.15;
+    z-index: -2;
+    animation: hexagonFloat 20s ease-in-out infinite;
+}
+
+/* Secondary animated layer */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('assets/images/hexagon-pattern.svg') repeat;
+    background-size: 80px 70px;
+    background-position: 
+        calc(25px + var(--scroll-offset-2, 0px)) calc(25px + var(--scroll-offset-2, 0px));
+    opacity: 0.08;
+    z-index: -1;
+    animation: hexagonFloat 15s ease-in-out infinite reverse;
+}
+
+@keyframes hexagonFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+        opacity: 0.15; 
+    }
+    25% { 
+        transform: translateY(-10px) rotate(0.5deg); 
+        opacity: 0.12; 
+    }
+    50% { 
+        transform: translateY(-5px) rotate(0deg); 
+        opacity: 0.18; 
+    }
+    75% { 
+        transform: translateY(-15px) rotate(-0.5deg); 
+        opacity: 0.1; 
+    }
 }
 
 a { 
@@ -25,6 +82,11 @@ header {
     text-align: center; 
     position: relative;
     overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 header::before {
@@ -34,11 +96,46 @@ header::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('assets/images/hexagon-pattern.svg') repeat;
-    background-size: 80px 70px;
-    opacity: 0.1;
+    background: 
+        url('assets/images/hexagon-pattern-large.svg') repeat,
+        url('assets/images/hexagon-pattern.svg') repeat;
+    background-size: 150px 130px, 100px 87px;
+    background-position: 0 0, 75px 75px;
+    opacity: 0.2;
     pointer-events: none;
     z-index: 0;
+    animation: headerHexagonFloat 25s ease-in-out infinite;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('assets/images/hexagon-pattern.svg') repeat;
+    background-size: 60px 52px;
+    background-position: 30px 30px;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+    animation: headerHexagonFloat 18s ease-in-out infinite reverse;
+}
+
+@keyframes headerHexagonFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg) scale(1); 
+        opacity: 0.2; 
+    }
+    33% { 
+        transform: translateY(-8px) rotate(1deg) scale(1.02); 
+        opacity: 0.15; 
+    }
+    66% { 
+        transform: translateY(-12px) rotate(-0.5deg) scale(0.98); 
+        opacity: 0.25; 
+    }
 }
 
 header > * {
@@ -242,6 +339,128 @@ footer {
     text-align: center; 
     padding: 20px; 
     margin-top: 40px; 
+}
+
+/* Floating hexagonal elements */
+.floating-hex {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    background: url('assets/images/hexagon-pattern.svg') no-repeat center;
+    background-size: contain;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: -1;
+    animation: floatAround 30s linear infinite;
+}
+
+.floating-hex:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 25s;
+}
+
+.floating-hex:nth-child(2) {
+    top: 60%;
+    right: 15%;
+    animation-delay: -10s;
+    animation-duration: 35s;
+}
+
+.floating-hex:nth-child(3) {
+    top: 40%;
+    left: 80%;
+    animation-delay: -20s;
+    animation-duration: 40s;
+}
+
+.floating-hex:nth-child(4) {
+    bottom: 30%;
+    left: 20%;
+    animation-delay: -5s;
+    animation-duration: 28s;
+}
+
+@keyframes floatAround {
+    0% { 
+        transform: translateY(0px) translateX(0px) rotate(0deg); 
+        opacity: 0.1; 
+    }
+    25% { 
+        transform: translateY(-20px) translateX(10px) rotate(90deg); 
+        opacity: 0.15; 
+    }
+    50% { 
+        transform: translateY(-10px) translateX(-15px) rotate(180deg); 
+        opacity: 0.08; 
+    }
+    75% { 
+        transform: translateY(-30px) translateX(5px) rotate(270deg); 
+        opacity: 0.12; 
+    }
+    100% { 
+        transform: translateY(0px) translateX(0px) rotate(360deg); 
+        opacity: 0.1; 
+    }
+}
+
+/* Mobile responsiveness for hexagonal background */
+@media (max-width: 768px) {
+    body::before {
+        background-size: 150px 130px, 80px 70px;
+        opacity: 0.1;
+    }
+    
+    body::after {
+        background-size: 60px 52px;
+        opacity: 0.05;
+    }
+    
+    header::before {
+        background-size: 120px 104px, 80px 70px;
+        opacity: 0.15;
+    }
+    
+    header::after {
+        background-size: 50px 43px;
+        opacity: 0.1;
+    }
+    
+    .floating-hex {
+        width: 40px;
+        height: 40px;
+        opacity: 0.05;
+    }
+    
+    .floating-hex:nth-child(3),
+    .floating-hex:nth-child(4) {
+        display: none; /* Reduce floating elements on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    body::before {
+        background-size: 100px 87px, 60px 52px;
+        opacity: 0.08;
+    }
+    
+    body::after {
+        display: none; /* Hide secondary layer on very small screens */
+    }
+    
+    header::before {
+        background-size: 100px 87px, 60px 52px;
+        opacity: 0.1;
+    }
+    
+    header::after {
+        display: none;
+    }
+    
+    .floating-hex {
+        display: none; /* Hide floating elements on very small screens */
+    }
 }
 
 /* Animations */
