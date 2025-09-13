@@ -1,0 +1,28 @@
+<svg width="120" height="104" viewBox="0 0 120 104" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="hexagonPattern" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
+      <!-- Main hexagon -->
+      <polygon points="30,2 50,15 50,37 30,50 10,37 10,15" 
+               fill="none" 
+               stroke="#4e54c8" 
+               stroke-width="0.8" 
+               opacity="0.15"/>
+      
+      <!-- Inner hexagon -->
+      <polygon points="30,8 45,18 45,34 30,44 15,34 15,18" 
+               fill="none" 
+               stroke="#8f94fb" 
+               stroke-width="0.5" 
+               opacity="0.1"/>
+      
+      <!-- Center dot -->
+      <circle cx="30" cy="26" r="1.5" fill="#4e54c8" opacity="0.2"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#f4f7fb"/>
+  
+  <!-- Pattern -->
+  <rect width="100%" height="100%" fill="url(#hexagonPattern)"/>
+</svg>

@@ -8,7 +8,8 @@
 body { 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
     line-height: 1.6; 
-    background: #f4f7fb; 
+    background: #f4f7fb url('assets/images/hexagon-pattern.svg') repeat; 
+    background-size: 120px 104px;
     color: #333; 
 }
 
@@ -22,6 +23,27 @@ header {
     color: #fff; 
     padding: 80px 20px; 
     text-align: center; 
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('assets/images/hexagon-pattern.svg') repeat;
+    background-size: 80px 70px;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+header > * {
+    position: relative;
+    z-index: 1;
 }
 
 header h1 { 
@@ -66,6 +88,27 @@ section {
     padding: 80px 20px; 
     max-width: 1000px; 
     margin: auto; 
+    position: relative;
+}
+
+/* Subtle pattern overlay for sections */
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('assets/images/hexagon-pattern.svg') repeat;
+    background-size: 60px 52px;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+}
+
+section > * {
+    position: relative;
+    z-index: 1;
 }
 
 section h2 { 
@@ -95,11 +138,38 @@ section h2 {
     border-radius: 12px; 
     box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
     padding: 20px; 
-    transition: transform 0.3s ease; 
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: url('assets/images/hexagon-pattern.svg') repeat;
+    background-size: 30px 26px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .project-card:hover { 
-    transform: translateY(-8px); 
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(78, 84, 200, 0.15);
+}
+
+.project-card:hover::before {
+    opacity: 0.05;
+}
+
+.project-card > * {
+    position: relative;
+    z-index: 1;
 }
 
 .project-card h3 { 
