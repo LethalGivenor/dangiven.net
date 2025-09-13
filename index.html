@@ -3,47 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dan Given - Portfolio</title>
-    <link rel="stylesheet" href="Styles/style.css">
+    <title>My Portfolio</title>
+    <style>
+        /* Global Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; background: #f4f7fb; color: #333; }
+        a { text-decoration: none; color: inherit; }
+
+        header { background: linear-gradient(135deg, #4e54c8, #8f94fb); color: #fff; padding: 80px 20px; text-align: center; }
+        header h1 { font-size: 3rem; margin-bottom: 10px; }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+
+        nav { background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 10; }
+        nav ul { display: flex; justify-content: center; list-style: none; }
+        nav ul li { margin: 10px 20px; }
+        nav ul li a { font-weight: bold; color: #4e54c8; transition: color 0.3s ease; }
+        nav ul li a:hover { color: #8f94fb; }
+
+        section { padding: 80px 20px; max-width: 1000px; margin: auto; }
+        section h2 { font-size: 2rem; margin-bottom: 20px; text-align: center; color: #4e54c8; }
+
+        /* About */
+        .about p { text-align: center; font-size: 1.1rem; max-width: 700px; margin: auto; }
+
+        /* Projects */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .project-card { background: #fff; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px; transition: transform 0.3s ease; }
+        .project-card:hover { transform: translateY(-8px); }
+        .project-card h3 { margin-bottom: 10px; color: #333; }
+        .project-card p { font-size: 0.95rem; margin-bottom: 10px; }
+        .project-card a { color: #4e54c8; font-weight: bold; }
+
+        /* Experience */
+        .timeline { border-left: 3px solid #4e54c8; padding-left: 20px; }
+        .timeline-item { margin-bottom: 20px; position: relative; }
+        .timeline-item::before { content: ""; position: absolute; left: -10px; top: 5px; width: 15px; height: 15px; background: #4e54c8; border-radius: 50%; }
+        .timeline-item h3 { margin-bottom: 5px; color: #4e54c8; }
+        .timeline-item span { font-size: 0.9rem; color: #777; }
+
+        /* Contact */
+        .contact { text-align: center; }
+        .contact a { display: inline-block; margin: 10px 15px; font-size: 1.2rem; color: #4e54c8; transition: color 0.3s; }
+        .contact a:hover { color: #8f94fb; }
+
+        footer { background: #333; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+
+        /* Animations */
+        [data-animate] { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        [data-animate].visible { opacity: 1; transform: translateY(0); }
+    </style>
 </head>
 <body>
+
 <header>
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+    <h1>Your Name</h1>
+    <p>Software Engineer | Problem Solver | Tech Enthusiast</p>
 </header>
 
-<section id="hero">
-    <h1>Welcome to Dan Given's Portfolio</h1>
-    <p>Showcasing projects, skills, and experience in web development and more.</p>
+<nav>
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<section id="about" class="about" data-animate>
+    <h2>About Me</h2>
+    <p>Hello! I’m a passionate developer with experience in building web applications, solving problems with clean code, and continuously learning new technologies. I enjoy creating impactful projects that combine functionality with sleek design.</p>
 </section>
 
-<section id="features">
-    <div class="feature">
-        <h2>Web Development</h2>
-        <p>Building responsive and modern websites using industry-standard practices.</p>
+<section id="projects" data-animate>
+    <h2>Projects</h2>
+    <div class="projects-grid">
+        <div class="project-card">
+            <h3>Project One</h3>
+            <p>A short description of this awesome project you built.</p>
+            <a href="#" target="_blank">View Project →</a>
+        </div>
+        <div class="project-card">
+            <h3>Project Two</h3>
+            <p>Another impactful project, maybe using React, Java, or something exciting.</p>
+            <a href="#" target="_blank">View Project →</a>
+        </div>
+        <div class="project-card">
+            <h3>Project Three</h3>
+            <p>Showcase a project that highlights problem-solving and creativity.</p>
+            <a href="#" target="_blank">View Project →</a>
+        </div>
     </div>
-    <div class="feature">
-        <h2>Programming Projects</h2>
-        <p>Full-stack applications and automation projects with clean, maintainable code.</p>
+</section>
+
+<section id="experience" data-animate>
+    <h2>Experience</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <h3>Software Engineer - Company A</h3>
+            <span>2023 - Present</span>
+            <p>Worked on backend systems, optimising APIs, and improving scalability.</p>
+        </div>
+        <div class="timeline-item">
+            <h3>Intern Developer - Company B</h3>
+            <span>2022</span>
+            <p>Contributed to a web app project, gained hands-on experience in frontend development.</p>
+        </div>
     </div>
-    <div class="feature">
-        <h2>Portfolio Design</h2>
-        <p>Designing visually appealing and user-friendly interfaces for any project.</p>
-    </div>
-    <div class="feature">
-        <h2>Learning & Experimentation</h2>
-        <p>Always exploring new technologies and refining skills through real projects.</p>
-    </div>
+</section>
+
+<section id="contact" class="contact" data-animate>
+    <h2>Contact</h2>
+    <p>Feel free to reach out through any of the platforms below:</p>
+    <a href="mailto:yourname@email.com">Email</a>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+    <a href="https://github.com/yourgithub" target="_blank">GitHub</a>
 </section>
 
 <footer>
-    <p>&copy; 2025 Dan Given</p>
+    <p>© 2025 Your Name. All Rights Reserved.</p>
 </footer>
+
+<script>
+    // Simple scroll animation
+    const elements = document.querySelectorAll('[data-animate]');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    elements.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
